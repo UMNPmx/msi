@@ -1,0 +1,15 @@
+#!/bin/bash -l
+#SBATCH --time=24:00:00
+#SBATCH -p amdlarge
+#SBATCH --ntasks=20
+#SBATCH --nodes=20
+#SBATCH --mem=10g
+#SBATCH --tmp=10g
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=user@umn.edu
+source /etc/profile.d/modules.sh 
+module load impi 
+nm75=/home/<group>/shared/nm75i/util/nmfe75 
+VAL=$1
+$nm75 $VAL.txt $VAL.res -prdefault -parafile=mpi.pnm 
+
